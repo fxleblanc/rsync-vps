@@ -15,7 +15,7 @@ sudo crontab -u fxleblanc cron/sync
 # Launch the script once if ONE_SHOT is defined
 if [ -n $ONE_SHOT ]; then
     echo "Launching the script once"
-    sudo /usr/local/bin/sync
+    ./cron/script
 else
     echo "Starting cron"
     sudo crond -f -l 0
