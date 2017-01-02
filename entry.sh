@@ -12,5 +12,12 @@ ssh-add .ssh/id_rsa
 # Add the cronfile to fxleblanc's cron
 sudo crontab -u fxleblanc cron/sync
 
-# Start the cron daemon
-sudo crond -f -l 0
+# Launch the script once if ONE_SHOT is defined
+if [ -n $ONE_SHOT ]; then
+    echo "Launching the script once"
+    sudo /usr/local/bin/sync
+else
+    echo "Starting cron"
+    sudo crond -f -l 0
+fi
+
