@@ -3,6 +3,11 @@
 # Entrypoint script
 #
 
+#Copy the ssh files into .ssh
+mkdir .ssh
+cp ssh/* .ssh/
+chmod 600 .ssh/id_rsa
+
 # Start the ssh agent
 eval `ssh-agent -s`
 
