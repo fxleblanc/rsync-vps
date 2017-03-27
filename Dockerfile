@@ -1,8 +1,8 @@
 FROM alpine:3.4
 MAINTAINER fxleblanc
 
-# Add the fxleblanc user
-RUN adduser fxleblanc -D
+# Add the 1000 user
+RUN adduser 1000 -D
 
 # Install rsync
 RUN apk add --no-cache rsync
@@ -14,19 +14,19 @@ RUN apk add --no-cache openssh-client
 ADD entry.sh /usr/bin/entry
 
 # Change ownership make it executable
-RUN chown fxleblanc:fxleblanc /usr/bin/entry
+RUN chown 1000:1000 /usr/bin/entry
 
 # Install sudo
 RUN apk add --no-cache sudo
 
-# Add fxleblanc as sudo
-RUN echo 'fxleblanc ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# Add 1000 as sudo
+RUN echo '1000 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-# Switch to user fxleblanc
-USER fxleblanc
+# Switch to user 1000
+USER 1000
 
 # Change working directory
-WORKDIR /home/fxleblanc
+WORKDIR /home/1000
 
 # Entrypoint script
 ENTRYPOINT ["/usr/bin/entry"]
